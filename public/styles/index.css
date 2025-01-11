@@ -1,0 +1,53 @@
+/* General adjustments */
+body {
+    background-color: #f0f0f0;
+}
+
+.container-fluid{
+    background-color: #66b3ff;
+}
+
+
+.navbar {
+    background-color: #66b3ff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.search-bar {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+/* Style for search button */
+.btn-warning {
+    background-color: #ffcc00;
+}
+
+/* Navbar link alignment */
+.navbar-link {
+    margin-left: auto;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    }
+
+    .navbar-link {
+        margin-left: 0; /* Ajuste para evitar márgenes excesivos */
+        text-align: right;
+    }
+}
