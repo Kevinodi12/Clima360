@@ -1,3 +1,3 @@
 .DS_Store
 node_modules
-apiKey=9eb58f7fdc7bbd1f0ba39e0524ae46bd
+.env
