@@ -19,9 +19,39 @@
     </nav>
     
     <div class="container mt-4">
-      <h2>Bienvenido a Clima360!</h2>
+      <h2 class="mensaje-bienvenida">Bienvenido a Clima360!</h2>
+      <h5 class="mensaje-secundario"><em>Tu pronostico de confianza</em></h5>
     </div>
-    <h1>SOY INDEX</h1>
+    <div>
+  <h4 class="encabezado-pronostico">Estos son los pronosticos de algunas ciudades en el mundo:</h4>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <% weatherData.forEach(weather => { %>
+      <div class="col">
+        <div class="card">
+          <div class="card-header"><h5><%= weather.city %></h5></div>
+          <div class="encabezado-card">
+            <img src="<%= weather.iconUrl %>" class="card-img-top" alt="<%= weather.description %>">
+            <p class="text-desc"><%= weather.description %></p>
+          </div>
+          <div class="card-body">
+            <div class="info-card">
+              <p>Temperatura: <%= weather.temp %>°C</p>
+              <p>Mínima: <%= weather.min %>°C</p>
+              <p>Máxima: <%= weather.max %>°C</p>
+            </div>
+            <div class="info-card">
+              <p>Humedad: <%= weather.humidity %>%</p>
+              <p>Nubosidad: <%= weather.clouds %>%</p>
+              <p>Probabilidad de lluvia: <%= weather.rain %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

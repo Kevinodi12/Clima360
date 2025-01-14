@@ -14,12 +14,50 @@ const url = "https://api.openweathermap.org/data/2.5/weather?";
 const unit = "metric";
 const lang = "es";
 
-app.get("/", (req, res) => {
-    res.render("index.ejs");
+app.set("view engine", "ejs");
+
+app.get("/", async (req, res) => {
+    const cities = ["Buenos Aires", "New York", "Tokyo", "London", "Paris" ,"Ginebra"];
+    const weatherData = [];
+
+    try {
+        const requests = cities.map(city =>
+            axios.get(url, {
+                params: {
+                    q: city,
+                    appid: apiKey,
+                    units: unit,
+                    lang: lang,
+                },
+            })
+        );
+
+        const responses = await Promise.all(requests);
+
+        responses.forEach(response => {
+            weatherData.push({
+                city: response.data.name,
+                temp: response.data.main.temp,
+                min: response.data.main.temp_min,
+                max: response.data.main.temp_max,
+                rain: response.data.rain ? response.data.rain["1h"] : "0%",
+                clouds: response.data.clouds.all,
+                humidity: response.data.main.humidity,
+                iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+                description: response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1),
+            });
+        });
+
+        res.render("index.ejs", { weatherData });
+    } catch (error) {
+        console.log(error);
+        res.render("index.ejs", { weatherData: [] });
+    }
 });
 
+
 app.get("/infodetallada", (req, res) => {
-    res.render("infodetallada.ejs", {
+    res.render("infodetallada", {
         temp: "",
         desc: "",
         iconUrl: "",
@@ -41,21 +79,20 @@ app.post("/", async (req, res) => {
         const desc = response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1);
         const icon = response.data.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-        
-    
-        res.render("infodetallada.ejs", {
-            city: cityName.charAt(0).toUpperCase() + cityName.slice(1), 
+
+        res.render("infodetallada", {
+            city: cityName.charAt(0).toUpperCase() + cityName.slice(1),
             temp: temp,
-            desc: desc, 
+            desc: desc,
             iconUrl: iconUrl,
         });
     } catch (error) {
         console.log(error);
-        res.render("infodetallada.ejs", {
-            city: "",   
-            temp: "",   
+        res.render("infodetallada", {
+            city: "",
+            temp: "",
             desc: "",
-            iconUrl: "",   
+            iconUrl: "",
         });
     }
 });

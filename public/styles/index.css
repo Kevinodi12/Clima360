@@ -1,4 +1,4 @@
-/* General adjustments */
+
 body {
     background-color: #f0f0f0;
 }
@@ -27,12 +27,11 @@ body {
     width: 30%;
 }
 
-/* Style for search button */
+
 .btn-warning {
     background-color: #ffcc00;
 }
 
-/* Navbar link alignment */
 .navbar-link {
     margin-left: auto;
     text-decoration: none;
@@ -43,11 +42,76 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .search-bar {
-        width: 100%; /* Asegura que ocupe todo el ancho disponible */
+        width: 100%; 
     }
 
     .navbar-link {
-        margin-left: 0; /* Ajuste para evitar márgenes excesivos */
+        margin-left: 0;
         text-align: right;
     }
+}
+
+.mensaje-bienvenida {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+}
+
+.mensaje-secundario {
+    font-size: 24px;
+    color: #666666;
+    text-align: center;
+}
+
+.encabezado-pronostico {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.info-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.card-img-top {
+    width: 100px;
+    height: 100px;
+}
+
+.encabezado-card {
+    display: flex;
+    align-items: center;
+}
+
+.text-desc {
+    padding-top: 20px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    margin: 0;
+    flex: 1; 
+    text-align: center;
+}
+.card-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card-header {
+    text-align: center;
 }
