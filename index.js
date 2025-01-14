@@ -74,17 +74,29 @@ app.post("/", async (req, res) => {
                 units: unit,
                 lang: lang,
             },
+            
         });
+
         const temp = response.data.main.temp;
         const desc = response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1);
         const icon = response.data.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        const humidity = response.data.main.humidity;
+        const clouds = response.data.clouds.all;
+        const rain = response.data.rain ? response.data.rain["1h"] : "0%";
+        const max = response.data.main.temp_max;
+        const min = response.data.main.temp_min;
 
         res.render("infodetallada", {
             city: cityName.charAt(0).toUpperCase() + cityName.slice(1),
             temp: temp,
             desc: desc,
             iconUrl: iconUrl,
+            humidity: humidity,
+            clouds: clouds,
+            rain: rain,
+            max: max,
+            min: min
         });
     } catch (error) {
         console.log(error);
@@ -93,6 +105,7 @@ app.post("/", async (req, res) => {
             temp: "",
             desc: "",
             iconUrl: "",
+            
         });
     }
 });

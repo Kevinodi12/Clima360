@@ -10,7 +10,7 @@
   <body>
     <nav class="navbar">
       <div class="container-fluid d-flex justify-content-between align-items-center">
-        <a class="navbar-brand">Clima360</a>
+        <a href="/" class="navbar-brand">Clima360</a>
         <form action="/" method="post" class="d-flex search-bar" role="search">
           <input class="form-control me-2 barra" type="text" id="cityInput" name="cityName" placeholder="Ingrese una ciudad para ver el clima!" aria-label="Search" class="form-control" required>
           <button class="btn btn-warning" type="submit">Buscar</button>
@@ -19,19 +19,31 @@
     </nav>
     
     <div class="container mt-4">
-      <h2>Bienvenido a Clima360!</h2>
-
       <% if (temp) { %>
         <div class="mt-4">
-          <h3>Clima en <%= city %>:</h3>
-          <p>Temperatura: <%= temp %>°C</p>
-          <p>Descripción: <%= desc %></p>
-          <img src="<%= iconUrl %>" alt="Clima icon" width="100" height="100">
-        </div>
+          <div class="card">
+            <div class="card-header"><h5><%= city %></h5></div>
+            <div class="encabezado-card">
+              <img src="<%= iconUrl %>" class="card-img-top" alt="<%= desc %>">
+              <p class="text-desc"><%= desc %></p>
+            </div>
+            <div class="card-body">
+              <div class="info-card">
+                <p>Temperatura: <%= temp %>°C</p>
+                <p>Mínima: <%= min %>°C</p>
+                <p>Máxima: <%= max %>°C</p>
+              </div>
+              <div class="info-card">
+                <p>Humedad: <%= humidity %>%</p>
+                <p>Nubosidad: <%= clouds %>%</p>
+                <p>Probabilidad de lluvia: <%=rain %></p>
+              </div>
+            </div>
       <% } %>
     </div>
 
-    <h1>SOY INFODETALLADA</h1>
+    <div class="col">
+      
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
